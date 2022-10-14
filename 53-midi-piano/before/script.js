@@ -25,8 +25,6 @@ document.addEventListener("keydown", (e) => {
 });
 
 document.addEventListener("keyup", (e) => {
-  if (e.repeat) return;
-
   const keyboardKey = e.code;
   const noteDetail = getNoteDetail(keyboardKey);
 
@@ -37,16 +35,13 @@ document.addEventListener("keyup", (e) => {
 });
 
 function getNoteDetail(keyboardKey) {
-  return NOTE_DETAILS.find((n) => {
-    `Key${n.key}`;
-  });
+  return NOTE_DETAILS.find((n) => `Key${n.key}` === keyboardKey);
 }
 
 function playNotes() {
-  const keyEl = NOTE_DETAILS.forEach((n) => {
-    document.querySelector(`[data-note = '${n.note}']`);
-
-    keyEl.classList.toggle("active", n.active);
+  NOTE_DETAILS.forEach((n) => {
+    const keyElement = document.querySelector(`[data-note="${n.note}"]`);
+    keyElement.classList.toggle("active", n.active);
     if (n.oscillator != null) {
       n.oscillator.stop();
       n.oscillator.disconnect();
