@@ -44,7 +44,7 @@ quizForm.addEventListener("submit", (e) => {
     const allTrue = checkedAnswers.every((a) => a.value === "true");
     const allAnswered = checkedAnswers.length === questionItem.length;
 
-    if (allTrue && allAnswered) {
+    if (allTrue) {
       info.classList.add("active");
       setTimeout(() => {
         info.classList.remove("active");
